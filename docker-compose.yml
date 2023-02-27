@@ -11,3 +11,15 @@ services:
         - ../DbBenchmark.Container/couchdb:/opt/couchdb/data
     ports:
       - "5984:5984"
+  
+  benchmark_influxdb:
+    image: influxdb:2.6-alpine
+    restart: always
+    environment:
+      - INFLUXDB_DB=benchmark
+      - INFLUXDB_ADMIN_USER=root
+      - INFLUXDB_ADMIN_PASSWORD=root
+    ports:
+      - '8086:8086'
+    volumes:
+      - ../DbBenchmark.Container/database/influxdb:/var/lib/influxdb
