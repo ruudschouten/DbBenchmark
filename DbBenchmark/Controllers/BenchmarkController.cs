@@ -2,6 +2,7 @@ using DbBenchmark.CouchDb;
 using DbBenchmark.Fakers;
 using DbBenchmark.InfluxDb;
 using DbBenchmark.MongoDb;
+using DbBenchmark.Redis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbBenchmark.Controllers;
@@ -19,10 +20,14 @@ public class BenchmarkController : ControllerBase
     private readonly MongoService _mongo;
     private readonly MongoReadingFaker _mongoFaker;
 
+    private readonly RedisService _redis;
+    private readonly RedisReadingFaker _redisFaker;
+
     public BenchmarkController(
         CouchService couchService,
         InfluxService influxService,
-        MongoService mongoService
+        MongoService mongoService,
+        RedisService redisService
     )
     {
         _couch = couchService;
@@ -33,6 +38,9 @@ public class BenchmarkController : ControllerBase
 
         _mongo = mongoService;
         _mongoFaker = new MongoReadingFaker();
+
+        _redis = redisService;
+        _redisFaker = new RedisReadingFaker();
     }
 
     [HttpGet("CouchDb")]
@@ -51,5 +59,11 @@ public class BenchmarkController : ControllerBase
     public Task SaveMongo()
     {
         return _mongo.Save(_mongoFaker.Generate());
+    }
+
+    [HttpGet("Redis")]
+    public Task SaveRedis()
+    {
+        return _redis.Save(_redisFaker.Generate());
     }
 }

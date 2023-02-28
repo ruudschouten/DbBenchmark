@@ -9,9 +9,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Adding databases
 DatabaseProvider.AddCouchDb(builder);
 DatabaseProvider.AddInfluxDb(builder);
 DatabaseProvider.AddMongoDb(builder);
+DatabaseProvider.AddRedis(builder);
 
 var app = builder.Build();
 

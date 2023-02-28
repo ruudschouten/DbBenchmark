@@ -32,3 +32,8 @@ dotnet crank --config .\BenchmarkFiles\influxdb.yml --scenario bomb --profile lo
 ```shell
 dotnet crank --config .\BenchmarkFiles\mongodb.yml --scenario bomb --profile local --json mongodb.json
 ```
+
+**Redis**
+```shell
+dotnet crank --config .\BenchmarkFiles\redis.yml --scenario bomb --profile local --json redis.json
+```
