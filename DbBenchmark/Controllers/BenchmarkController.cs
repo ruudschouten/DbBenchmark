@@ -16,11 +16,11 @@ public class BenchmarkController : ControllerBase
     private readonly InfluxReadingFaker _influxFaker;
 
     public BenchmarkController(
-        // CouchService couchService,
+        CouchService couchService,
         InfluxService influxService
     )
     {
-        // _couch = couchService;
+        _couch = couchService;
         _couchFaker = new CouchReadingFaker();
 
         _influx = influxService;
