@@ -20,7 +20,7 @@ public static class DatabaseProvider
     public static void AddInfluxDb(WebApplicationBuilder builder)
     {
         // Retrieve this from the Influx dashboard.
-        const string token = "P-c_AljEQceB6ScaslaShcQl6vFcZU72w4FzvJe5LeCVJyxh1Na7skaquGdnHGDWm4AqPbSAEGphxWtsEMaP7g==";
+        var token = "";
 
         var options = new InfluxDBClientOptions("http://localhost:8086")
         {
