@@ -27,3 +27,8 @@ dotnet crank --config .\BenchmarkFiles\couchdb.yml --scenario bomb --profile loc
 ```shell
 dotnet crank --config .\BenchmarkFiles\influxdb.yml --scenario bomb --profile local --json influxdb.json
 ```
+
+**MongoDb**
+```shell
+dotnet crank --config .\BenchmarkFiles\mongodb.yml --scenario bomb --profile local --json mongodb.json
+```

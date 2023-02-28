@@ -13,6 +13,12 @@
       "commands": [
         "crank-agent"
       ]
+    },
+    "dotnet-trace": {
+      "version": "7.0.410101",
+      "commands": [
+        "dotnet-trace"
+      ]
     }
   }
 }

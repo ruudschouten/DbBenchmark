@@ -22,4 +22,15 @@ services:
     ports:
       - '8086:8086'
     volumes:
-      - ../DbBenchmark.Container/database/influxdb:/var/lib/influxdb
+      - ../DbBenchmark.Container/influxdb:/var/lib/influxdb
+
+  benchmark_mongodb:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_password=root
+    ports:
+      - '27017:27017'
+    volumes:
+      - ../DbBenchmark.Container/mongodb:/data/db

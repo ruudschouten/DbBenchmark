@@ -1,6 +1,7 @@
 using DbBenchmark.CouchDb;
 using DbBenchmark.Fakers;
 using DbBenchmark.InfluxDb;
+using DbBenchmark.MongoDb;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DbBenchmark.Controllers;
@@ -15,9 +16,13 @@ public class BenchmarkController : ControllerBase
     private readonly InfluxService _influx;
     private readonly InfluxReadingFaker _influxFaker;
 
+    private readonly MongoService _mongo;
+    private readonly MongoReadingFaker _mongoFaker;
+
     public BenchmarkController(
         CouchService couchService,
-        InfluxService influxService
+        InfluxService influxService,
+        MongoService mongoService
     )
     {
         _couch = couchService;
@@ -25,6 +30,9 @@ public class BenchmarkController : ControllerBase
 
         _influx = influxService;
         _influxFaker = new InfluxReadingFaker();
+
+        _mongo = mongoService;
+        _mongoFaker = new MongoReadingFaker();
     }
 
     [HttpGet("CouchDb")]
@@ -37,5 +45,11 @@ public class BenchmarkController : ControllerBase
     public Task SaveInflux()
     {
         return _influx.Save(_influxFaker.Generate());
+    }
+
+    [HttpGet("MongoDb")]
+    public Task SaveMongo()
+    {
+        return _mongo.Save(_mongoFaker.Generate());
     }
 }

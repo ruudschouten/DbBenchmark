@@ -1,0 +1,35 @@
+﻿imports:
+  - ./BenchmarkFiles/LoadGenerators/bombardier.yml
+
+jobs:
+  server:
+    source:
+      localFolder: ../
+      project: DbBenchmark/DbBenchmark.csproj
+      selfContained: false
+    dotnetTrace: true
+    options:
+      collectCounters: true
+      traceOutput: mongodb_trace
+
+scenarios:
+  bomb:
+    application:
+      job: server
+    load:
+      job: bombardier
+      variables:
+        serverPort: 5000
+        path: /Benchmark/MongoDb
+
+profiles:
+  local:
+    variables:
+      serverAddress: localhost
+    jobs:
+      application:
+        endpoints:
+          - http://localhost:5010
+      load:
+        endpoints:
+          - http://localhost:5010
