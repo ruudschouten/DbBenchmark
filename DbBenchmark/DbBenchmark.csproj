@@ -51,6 +51,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DbBenchmark.CouchDb\DbBenchmark.CouchDb.csproj" />
+      <ProjectReference Include="..\DbBenchmark.InfluxDb\DbBenchmark.InfluxDb.csproj" />
+      <ProjectReference Include="..\DbBenchmark.MongoDb\DbBenchmark.MongoDb.csproj" />
+      <ProjectReference Include="..\DbBenchmark.Redis\DbBenchmark.Redis.csproj" />
     </ItemGroup>
 
 </Project>

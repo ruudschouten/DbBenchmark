@@ -1,5 +1,4 @@
-using CouchDB.Driver.DependencyInjection;
-using DbBenchmark.CouchDb;
+using DbBenchmark;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,11 +10,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // CouchDb
-builder.Services.AddTransient<CouchService>();
-builder.Services.AddCouchContext<DbBenchmark.CouchDb.Context>(optionsBuilder => optionsBuilder 
-    .UseEndpoint("http://localhost:5984")
-    .EnsureDatabaseExists()
-    .UseBasicAuthentication("root", "root"));
+DatabaseProvider.AddCouchDb(builder);
+
+// InfluxDb
+DatabaseProvider.AddInfluxDb(builder);
 
 var app = builder.Build();
 
