@@ -1,5 +1,4 @@
 using DbBenchmark.CouchDb;
-using DbBenchmark.Fakers;
 using DbBenchmark.InfluxDb;
 using DbBenchmark.MongoDb;
 using DbBenchmark.Redis;

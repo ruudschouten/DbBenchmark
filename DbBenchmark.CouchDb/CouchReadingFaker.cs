@@ -1,7 +1,6 @@
 ﻿using Bogus;
-using DbBenchmark.CouchDb;
 
-namespace DbBenchmark.Fakers;
+namespace DbBenchmark.CouchDb;
 
 public class CouchReadingFaker : Faker<CouchReading>
 {
@@ -10,6 +9,6 @@ public class CouchReadingFaker : Faker<CouchReading>
         RuleFor(reading => reading.TimeStamp, () => DateTimeOffset.UtcNow);
         RuleFor(reading => reading.ValueType, (faker, _) => faker.System.FileType());
         RuleFor(reading => reading.Value, (faker, _) => faker.Random.Float(-100f, 100f));
-        RuleFor(reading => reading.SensorId, (faker, _) => faker.Random.Int(min: 1));
+        RuleFor(reading => reading.SensorId, (faker, _) => faker.Random.Int(1));
     }
 }
