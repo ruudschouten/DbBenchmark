@@ -1,6 +1,23 @@
 version: "3.9"
 
+networks:
+  benchmark_network:
+
 services:
+  benchmark_asp:
+    image: benchmark
+    build:
+      context: ./
+      dockerfile: DbBenchmark/Dockerfile
+    restart: always
+    environment:
+      - USING_DOCKER=true
+    networks:
+      - benchmark_network
+    ports:
+      - '4040:80'
+      - '5050:443'
+  
   benchmark_couchdb:
     image: couchdb:latest
     restart: always
@@ -9,35 +26,46 @@ services:
       - COUCHDB_PASSWORD=root
     volumes:
       - ../DbBenchmark.Container/couchdb:/opt/couchdb/data
+    networks:
+      - benchmark_network
     ports:
-      - "5984:5984"
+      - '5984:5984'
   
   benchmark_influxdb:
     image: influxdb:2.6-alpine
     restart: always
     environment:
-      - INFLUXDB_DB=benchmark
-      - INFLUXDB_ADMIN_USER=root
-      - INFLUXDB_ADMIN_PASSWORD=root
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=rubert
+      - DOCKER_INFLUXDB_INIT_PASSWORD=influx12
+      - DOCKER_INFLUXDB_INIT_ORG=benchmark
+      - DOCKER_INFLUXDB_INIT_BUCKET=benchmark
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=ibsu8H0W9WBNMTzlEfGGWmS5UAG6QJ0QBRPc6uECm_qn39bwy8jT0K3-eqVRLhvZbCdxPpv18yBHKOcqGDNt5w==
+    networks:
+      - benchmark_network
     ports:
       - '8086:8086'
     volumes:
-      - ../DbBenchmark.Container/influxdb:/var/lib/influxdb
+      - ../DbBenchmark.Container/influxdb:/var/lib/influxdb2
 
   benchmark_mongodb:
     image: mongodb/mongodb-community-server:6.0-ubi8
     restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_password=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    networks:
+      - benchmark_network
     ports:
       - '27017:27017'
     volumes:
       - ../DbBenchmark.Container/mongodb:/data/db
-  
+
   benchmark_redis_stack:
     image: redis/redis-stack:latest
     restart: always
+    networks:
+      - benchmark_network
     ports:
       - '6379:6379'
       - '8001:8001'

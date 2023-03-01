@@ -10,6 +10,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Adding databases
+var hasEnv = bool.TryParse(Environment.GetEnvironmentVariable("USING_DOCKER"), out var useDocker);
+
+DatabaseProvider.UsingDocker = hasEnv && useDocker;
+Console.WriteLine(DatabaseProvider.UsingDocker
+    ? "Docker URLs are being used."
+    : "Local URLs are being used."
+);
+
 DatabaseProvider.AddCouchDb(builder);
 DatabaseProvider.AddInfluxDb(builder);
 DatabaseProvider.AddMongoDb(builder);
