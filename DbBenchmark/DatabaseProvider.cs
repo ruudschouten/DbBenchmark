@@ -43,8 +43,8 @@ public static class DatabaseProvider
 
     public static void AddMongoDb(WebApplicationBuilder builder)
     {
-        const string dockerUrl = "mongodb://root:root@benchmark_mongodb:27017";
-        const string localUrl = "mongodb://root:root@localhost:27017";
+        const string dockerUrl = "mongodb://root:root@benchmark_mongodb:17017";
+        const string localUrl = "mongodb://root:root@localhost:17017";
 
         const string db = "benchmark";
         const string collectionName = "reading";

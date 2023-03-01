@@ -1,33 +1,14 @@
 version: "3.9"
 
-networks:
-  benchmark_network:
-
-services:
-  benchmark_asp:
-    image: benchmark
-    build:
-      context: ./
-      dockerfile: DbBenchmark/Dockerfile
-    restart: always
-    environment:
-      - USING_DOCKER=true
-    networks:
-      - benchmark_network
-    ports:
-      - '4040:80'
-      - '5050:443'
-  
+services:  
   benchmark_couchdb:
-    image: couchdb:latest
+    image: apache/couchdb:3
     restart: always
     environment:
       - COUCHDB_USER=root
       - COUCHDB_PASSWORD=root
     volumes:
       - ../DbBenchmark.Container/couchdb:/opt/couchdb/data
-    networks:
-      - benchmark_network
     ports:
       - '5984:5984'
   
@@ -41,8 +22,6 @@ services:
       - DOCKER_INFLUXDB_INIT_ORG=benchmark
       - DOCKER_INFLUXDB_INIT_BUCKET=benchmark
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=ibsu8H0W9WBNMTzlEfGGWmS5UAG6QJ0QBRPc6uECm_qn39bwy8jT0K3-eqVRLhvZbCdxPpv18yBHKOcqGDNt5w==
-    networks:
-      - benchmark_network
     ports:
       - '8086:8086'
     volumes:
@@ -54,18 +33,14 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
-    networks:
-      - benchmark_network
     ports:
-      - '27017:27017'
+      - '17017:27017'
     volumes:
       - ../DbBenchmark.Container/mongodb:/data/db
 
   benchmark_redis_stack:
     image: redis/redis-stack:latest
     restart: always
-    networks:
-      - benchmark_network
     ports:
       - '6379:6379'
       - '8001:8001'

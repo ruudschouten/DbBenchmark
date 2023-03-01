@@ -43,26 +43,30 @@ public class BenchmarkController : ControllerBase
     }
 
     [HttpGet("CouchDb")]
-    public Task SaveCouch()
+    public async Task<IActionResult> SaveCouch()
     {
-        return _couch.Save(_couchFaker.Generate());
+        await _couch.Save(_couchFaker.Generate());
+        return Ok();
     }
 
     [HttpGet("InfluxDb")]
-    public Task SaveInflux()
+    public async Task<IActionResult> SaveInflux()
     {
-        return _influx.Save(_influxFaker.Generate());
+        await _influx.Save(_influxFaker.Generate());
+        return Ok();
     }
 
     [HttpGet("MongoDb")]
-    public Task SaveMongo()
+    public async Task<IActionResult> SaveMongo()
     {
-        return _mongo.Save(_mongoFaker.Generate());
+        await _mongo.Save(_mongoFaker.Generate());
+        return Ok();
     }
 
     [HttpGet("Redis")]
-    public Task SaveRedis()
+    public async Task<IActionResult> SaveRedis()
     {
-        return _redis.Save(_redisFaker.Generate());
+        await _redis.Save(_redisFaker.Generate());
+        return Ok();
     }
 }
