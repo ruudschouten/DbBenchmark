@@ -12,8 +12,8 @@ public static class DatabaseProvider
     public static void AddCouchDb(WebApplicationBuilder builder)
     {
         builder.Services.AddTransient<CouchService>();
-        builder.Services.AddCouchContext<DbBenchmark.CouchDb.Context>(optionsBuilder => optionsBuilder
             .UseEndpoint("http://localhost:5984")
+        builder.Services.AddCouchContext<CouchDbContext>(optionsBuilder => optionsBuilder
             .EnsureDatabaseExists()
             .UseBasicAuthentication("root", "root"));
     }
