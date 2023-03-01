@@ -19,6 +19,7 @@ public static class DatabaseProvider
         builder.Services.AddTransient<CouchService>();
         builder.Services.AddCouchContext<CouchDbContext>(optionsBuilder => optionsBuilder
             .UseEndpoint(UsingDocker ? dockerUrl : localUrl)
+            .EnsureDatabaseExists()
             .UseBasicAuthentication("root", "root"));
     }
 
