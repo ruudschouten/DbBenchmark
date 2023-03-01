@@ -2,15 +2,15 @@
 
 public class CouchService
 {
-    private Context _context;
-    
-    public CouchService(Context context)
+    private readonly CouchDbContext _couchDbContext;
+
+    public CouchService(CouchDbContext couchDbContext)
     {
-        _context = context;
+        _couchDbContext = couchDbContext;
     }
 
-    public async Task<CouchReading> Save(CouchReading reading)
+    public Task<CouchReading> Save(CouchReading reading)
     {
-        return await _context.Readings.AddAsync(reading);
+        return _couchDbContext.Readings.AddAsync(reading);
     }
 }

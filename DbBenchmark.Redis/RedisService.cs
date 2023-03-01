@@ -5,7 +5,7 @@ namespace DbBenchmark.Redis;
 
 public class RedisService
 {
-    private IRedisCollection<RedisReading> _readings;
+    private readonly IRedisCollection<RedisReading> _readings;
 
     public RedisService(string url)
     {

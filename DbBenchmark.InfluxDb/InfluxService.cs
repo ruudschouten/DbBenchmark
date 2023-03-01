@@ -4,25 +4,17 @@ namespace DbBenchmark.InfluxDb;
 
 public class InfluxService
 {
-    private InfluxDBClientOptions _options;
+    private readonly InfluxDBClient _client;
 
     public InfluxService(InfluxDBClientOptions options)
     {
-        _options = options;
+        options.Timeout = TimeSpan.FromSeconds(10);
+        _client = new InfluxDBClient(options);
     }
 
-    private InfluxDBClient GetClient(double timespanSeconds = 10)
+    public Task Save(InfluxReading reading)
     {
-        _options.Timeout = TimeSpan.FromSeconds(timespanSeconds);
-        return new InfluxDBClient(_options);
-    }
-
-    public async Task Save(InfluxReading reading)
-    {
-        using var client = GetClient();
-
-        var writeApi = client.GetWriteApiAsync();
-        await writeApi.WriteMeasurementAsync(reading)
-            .ConfigureAwait(false);
+        var writeApi = _client.GetWriteApiAsync();
+        return writeApi.WriteMeasurementAsync(reading);
     }
 }

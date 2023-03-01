@@ -4,9 +4,11 @@ namespace DbBenchmark.InfluxDb;
 
 [Measurement("reading")]
 public record InfluxReading(
-    [property: Column("sensorId", IsTag = true)] int SensorId,
+    [property: Column("sensorId", IsTag = true)]
+    int SensorId,
     [property: Column(IsTimestamp = true)] DateTime TimeStamp,
-    [property: Column("type", IsTag = true)] string ValueType,
+    [property: Column("type", IsTag = true)]
+    string ValueType,
     [property: Column("value")] float Value
 )
 {
