@@ -9,7 +9,7 @@ public class CouchService
         _couchDbContext = couchDbContext;
     }
 
-    public Task<CouchReading> Save(CouchReading reading)
+    public Task Save(CouchReading reading)
     {
         return _couchDbContext.Readings.AddAsync(reading);
     }

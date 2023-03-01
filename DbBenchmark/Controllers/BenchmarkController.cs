@@ -43,7 +43,7 @@ public class BenchmarkController : ControllerBase
     }
 
     [HttpGet("CouchDb")]
-    public Task<CouchReading> SaveCouch()
+    public Task SaveCouch()
     {
         return _couch.Save(_couchFaker.Generate());
     }
