@@ -16,7 +16,7 @@ scenarios:
       job: bombardier
       variables:
         serverPort: 5000
-        path: /Benchmark/Redis
+        path: /Benchmark/RedisTimeSeries
 
 profiles:
   fourtress:

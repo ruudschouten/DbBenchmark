@@ -22,6 +22,7 @@ DatabaseProvider.AddCouchDb(builder);
 DatabaseProvider.AddInfluxDb(builder);
 DatabaseProvider.AddMongoDb(builder);
 DatabaseProvider.AddRedis(builder);
+DatabaseProvider.AddRedisTimeSeries(builder);
 
 var app = builder.Build();
 

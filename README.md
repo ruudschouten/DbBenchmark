@@ -43,3 +43,9 @@ dotnet crank --config .\BenchmarkFiles\mongodb.yml --scenario bomb --profile loc
 ```shell
 dotnet crank --config .\BenchmarkFiles\redis.yml --scenario bomb --profile local --json redis.json
 ```
+
+**RedisTimeSeries**
+
+```shell
+dotnet crank --config .\BenchmarkFiles\redis_timeseries.yml --scenario bomb --profile local --json redis_timeseries.json
+```

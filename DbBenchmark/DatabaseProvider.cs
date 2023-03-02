@@ -4,6 +4,7 @@ using DbBenchmark.InfluxDb;
 using DbBenchmark.MongoDb;
 using DbBenchmark.Redis;
 using InfluxDB.Client;
+using RedisTimeSeries;
 
 namespace DbBenchmark;
 
@@ -59,6 +60,15 @@ public static class DatabaseProvider
         const string localUrl = "redis://localhost:6379";
 
         var service = new RedisService(UsingDocker ? dockerUrl : localUrl);
+        builder.Services.AddSingleton(service);
+    }
+
+    public static void AddRedisTimeSeries(WebApplicationBuilder builder)
+    {
+        const string dockerUrl = "benchmark_redis_stack";
+        const string localUrl = "localhost";
+
+        var service = new RedisTimeSeriesService(UsingDocker ? dockerUrl : localUrl);
         builder.Services.AddSingleton(service);
     }
 }

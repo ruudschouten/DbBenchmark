@@ -7,10 +7,6 @@ jobs:
       localFolder: ../
       project: DbBenchmark/DbBenchmark.csproj
       selfContained: false
-    dotnetTrace: true
-    options:
-      collectCounters: true
-      traceOutput: influxdb_trace
 
 scenarios:
   bomb:
