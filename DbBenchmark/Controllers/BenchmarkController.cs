@@ -3,7 +3,6 @@ using DbBenchmark.InfluxDb;
 using DbBenchmark.MongoDb;
 using DbBenchmark.Redis;
 using Microsoft.AspNetCore.Mvc;
-using RedisTimeSeries;
 
 namespace DbBenchmark.Controllers;
 
@@ -23,15 +22,11 @@ public class BenchmarkController : ControllerBase
     private readonly RedisService _redis;
     private readonly RedisReadingFaker _redisFaker;
 
-    private readonly RedisTimeSeriesService _redisTimeSeries;
-    private readonly RedisTimeSeriesFaker _redisTimeSeriesFaker;
-
     public BenchmarkController(
         CouchService couchService,
         InfluxService influxService,
         MongoService mongoService,
-        RedisService redisService,
-        RedisTimeSeriesService redisTimeSeriesService
+        RedisService redisService
     )
     {
         _couch = couchService;
@@ -45,9 +40,6 @@ public class BenchmarkController : ControllerBase
 
         _redis = redisService;
         _redisFaker = new RedisReadingFaker();
-
-        _redisTimeSeries = redisTimeSeriesService;
-        _redisTimeSeriesFaker = new RedisTimeSeriesFaker();
     }
 
     [HttpGet("CouchDb")]
@@ -75,13 +67,6 @@ public class BenchmarkController : ControllerBase
     public async Task<IActionResult> SaveRedis()
     {
         await _redis.Save(_redisFaker.Generate());
-        return Ok();
-    }
-
-    [HttpGet("RedisTimeSeries")]
-    public async Task<IActionResult> SaveRedisTimeSeries()
-    {
-        await _redisTimeSeries.Save(_redisTimeSeriesFaker.Generate());
         return Ok();
     }
 }

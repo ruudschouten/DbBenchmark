@@ -25,11 +25,17 @@ Running benchmarks;
 ```shell
 dotnet crank --config .\BenchmarkFiles\couchdb.yml --scenario bomb --profile local --json couchdb.json
 ```
+```shell
+dotnet crank --config .\BenchmarkFiles\couchdb_get.yml --scenario bomb --profile local --json couchdb.json
+```
 
 **InfluxDB**
 
 ```shell
 dotnet crank --config .\BenchmarkFiles\influxdb.yml --scenario bomb --profile local --json influxdb.json
+```
+```shell
+dotnet crank --config .\BenchmarkFiles\influxdb_get.yml --scenario bomb --profile local --json influxdb.json
 ```
 
 **MongoDb**
@@ -37,15 +43,15 @@ dotnet crank --config .\BenchmarkFiles\influxdb.yml --scenario bomb --profile lo
 ```shell
 dotnet crank --config .\BenchmarkFiles\mongodb.yml --scenario bomb --profile local --json mongodb.json
 ```
+```shell
+dotnet crank --config .\BenchmarkFiles\mongodb_get.yml --scenario bomb --profile local --json mongodb.json
+```
 
 **Redis**
 
 ```shell
 dotnet crank --config .\BenchmarkFiles\redis.yml --scenario bomb --profile local --json redis.json
 ```
-
-**RedisTimeSeries**
-
 ```shell
-dotnet crank --config .\BenchmarkFiles\redis_timeseries.yml --scenario bomb --profile local --json redis_timeseries.json
+dotnet crank --config .\BenchmarkFiles\redis_get.yml --scenario bomb --profile local --json redis.json
 ```

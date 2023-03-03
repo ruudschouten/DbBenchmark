@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbBenchmark.Redis", "DbBenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbBenchmark.InfluxDb", "DbBenchmark.InfluxDb\DbBenchmark.InfluxDb.csproj", "{B6DB2AFC-7F9C-44FD-8185-36D278274598}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisTimeSeries", "RedisTimeSeries\RedisTimeSeries.csproj", "{3CFA797D-5443-43DB-A1B4-46EC6FE49791}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 		{B6DB2AFC-7F9C-44FD-8185-36D278274598}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6DB2AFC-7F9C-44FD-8185-36D278274598}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6DB2AFC-7F9C-44FD-8185-36D278274598}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CFA797D-5443-43DB-A1B4-46EC6FE49791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CFA797D-5443-43DB-A1B4-46EC6FE49791}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CFA797D-5443-43DB-A1B4-46EC6FE49791}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CFA797D-5443-43DB-A1B4-46EC6FE49791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

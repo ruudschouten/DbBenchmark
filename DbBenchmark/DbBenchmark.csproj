@@ -56,7 +56,6 @@
         <ProjectReference Include="..\DbBenchmark.InfluxDb\DbBenchmark.InfluxDb.csproj" />
         <ProjectReference Include="..\DbBenchmark.MongoDb\DbBenchmark.MongoDb.csproj" />
         <ProjectReference Include="..\DbBenchmark.Redis\DbBenchmark.Redis.csproj" />
-        <ProjectReference Include="..\RedisTimeSeries\RedisTimeSeries.csproj" />
     </ItemGroup>
 
 </Project>

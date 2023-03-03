@@ -3,17 +3,10 @@
 namespace DbBenchmark.InfluxDb;
 
 [Measurement("reading")]
-public record InfluxReading(
-    [property: Column("sensorId", IsTag = true)]
-    int SensorId,
-    [property: Column(IsTimestamp = true)] DateTime TimeStamp,
-    [property: Column("type", IsTag = true)]
-    string ValueType,
-    [property: Column("value")] float Value
-)
+public class InfluxReading
 {
-    // Empty constructor is required for InfluxDb mapping.
-    public InfluxReading() : this(-1, default, string.Empty, -1f)
-    {
-    }
+    [Column("data_type", IsTag = true)] public string ValueType { get; init; }
+    [Column("sensor_id", IsTag = true)] public int SensorId { get; init; }
+    [Column("value")] public float Value { get; init; }
+    [Column(IsTimestamp = true)] public DateTime TimeStamp { get; init; }
 }
